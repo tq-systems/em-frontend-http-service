@@ -1,6 +1,6 @@
 {
     "name": "@tq-systems/em-http-service",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "HTTP service with Axios for handling requests on the em platform with auth and error management.",
     "copyright": "TQ-Systems GmbH 2026",
     "license": "LicenseRef-TQSPSLA-1.0.3",
