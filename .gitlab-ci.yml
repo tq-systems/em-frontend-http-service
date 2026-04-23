@@ -1,25 +1,27 @@
 ---
-spec:
-  inputs:
-    project-id:
-      description: 'GitLab Project ID for the Package Registry'
-      type: string
-      default: '373'
-    toolchain-version:
-      description: 'Tag of the toolchain image (format: v8.1.0_tc7.8.1)'
-      default: 'v8.1.0_tc7.8.1'
-      type: string
-    components-version:
-      description: 'Tag of the build components to include (format: vX.Y.Z)'
-      default: '~latest'
-      type: string
----
-stages:
-  - build
-  - deploy
-
 include:
-  - component: $CI_SERVER_FQDN/tq-em/build/build-components/frontend/npm/npm-build-and-deploy@$[[ inputs.components-version ]]
-    inputs:
-      project-id: $[[ inputs.project-id ]]
-      toolchain-version: $[[ inputs.toolchain-version ]]
+- project: tq-em/public/build/toolchain
+  file: ci/packages.yml
+  ref: v1.2.0
+  rules:
+    - if: '$PUBLIC_TOOLCHAIN_CI_REF'
+      when: never
+    - when: always
+- project: tq-em/public/build/toolchain
+  file: ci/packages.yml
+  ref: $PUBLIC_TOOLCHAIN_CI_REF
+  rules:
+    - if: '$PUBLIC_TOOLCHAIN_CI_REF'
+
+
+Build Package:
+  extends: .build-package
+
+Secret Detection:
+  extends: .gitleaks
+
+Check Version:
+  extends: .check-version
+
+Deploy Package:
+  extends: .deploy-package
