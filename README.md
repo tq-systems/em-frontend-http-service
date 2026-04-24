@@ -1,4 +1,4 @@
-# @tq-em/em-http-service
+# @tq-systems/em-http-service
 
 HTTP service with Axios for handling requests on the em platform with auth and error management.
 
@@ -8,14 +8,14 @@ First, configure your `.yarnrc.yml` to use the TQ-EM registry for scoped package
 
 ```yaml
 npmScopes:
-  tq-em:
+  tq-systems:
     npmRegistryServer: "<tq-em-registry-url>"
 ```
 
 Then install the package:
 
 ```bash
-yarn add @tq-em/em-http-service
+yarn add @tq-systems/em-http-service
 ```
 
 ## Features
@@ -30,7 +30,7 @@ yarn add @tq-em/em-http-service
 ### Basic Setup
 
 ```javascript
-import HttpService from '@tq-em/em-http-service'
+import HttpService from '@tq-systems/em-http-service'
 
 // Create an instance with your API base URL
 const api = new HttpService('https://api.example.com', 10000)
